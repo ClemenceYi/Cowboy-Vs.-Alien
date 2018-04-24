@@ -1,0 +1,982 @@
+Stage
+=====
+
+Variables
+---------
+
+- bitstring2 = 00000
+- directionp1 = -15
+- touchingobject = 0
+- directionp2 = 50
+- touchingobject2 = 0
+- score p1 = 0
+- scorep2 = 5
+- Touching P2 = 1
+- background = 2
+
+Backdrops
+---------
+
+- backdrop1
+- world's hardest
+- backdrop3
+- backdrop2
+- backdrop5
+- costume1
+- backdrop4
+- backdrop6
+
+Sounds
+------
+
+- Thomas(Ambroise) Raymond-Overture(1851).wmv.mp3
+- wildwest.mp3
+- candide.mp3
+- JamesBond
+- MissionImpossible
+
+Scripts
+-------
+
+when @ clicked
+switch backdrop to [backdrop1 v]
+set [scorep2 v] to [0]
+set [score p1 v] to [0]
+hide variable [scorep2 v]
+hide variable [score p1 v]
+
+when I receive [Changebackdrop v]
+if <(backdrop #) = [1]> then
+    next backdrop
+end
+
+when @ clicked
+play sound [Thomas(Ambroise) Raymond-Overture(1851).wmv.mp3 v] until done
+
+when I receive [nextbackground v]
+next backdrop
+if <(backdrop #) = [1]> then
+    next backdrop
+end
+
+when I receive [Changebackdrop v]
+stop all sounds
+forever
+    changeMusic (pick random (1) to (4))
+end
+
+define changeMusic (i)
+if <(i) = [1]> then
+    play sound [wildwest.mp3 v] until done
+else
+    if <(i) = [2]> then
+        play sound [candide.mp3 v] until done
+    else
+        if <(i) = [3]> then
+            play sound [JamesBond v] until done
+        else
+            if <(i) = [4]> then
+                play sound [MissionImpossible v] until done
+            end
+        end
+    end
+end
+
+when I receive [stopall v]
+stop [other scripts in stage v]
+
+
+bulletp1
+========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [shootp1 v]
+go to [P1 v]
+point in direction (directionp1)
+show
+repeat until <<(touchingobject) > [0]> or <touching [P2 v] ?>>
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject v] to [1]
+    else
+        move (1) steps
+    end
+end
+set [touchingobject v] to [0]
+hide
+
+when @ clicked
+go to [P1 v]
+hide
+
+set size to (100) %
+
+when @ clicked
+wait (3) secs
+forever
+    if <touching [P2 v] ?> then
+        change [score p1 v] by (1)
+    end
+end
+
+when I receive [stopall v]
+stop [other scripts in sprite v]
+
+when @ clicked
+wait (3) secs
+forever
+    if <<(score p1) = [3]> or <(score p1) > [3]>> then
+        broadcast [cowboywin v]
+    end
+end
+
+
+bulletp2
+========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [shootp2 v]
+go to [P2 v]
+point in direction (directionp2)
+show
+repeat until <<(touchingobject2) > [0]> or <touching [P1 v] ?>>
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+    if <touching color [-16777216 v] ?> then
+        set [touchingobject2 v] to [1]
+    else
+        move (1) steps
+    end
+end
+set [touchingobject2 v] to [0]
+hide
+
+when @ clicked
+hide
+go to [P2 v]
+
+when @ clicked
+wait (1) secs
+forever
+    if <touching [P1 v] ?> then
+        change [scorep2 v] by (1)
+    end
+end
+
+when @ clicked
+wait (3) secs
+forever
+    if <<(scorep2) = [5]> or <(scorep2) > [5]>> then
+        broadcast [alienwin v]
+    end
+end
+
+when I receive [stopall v]
+stop [other scripts in sprite v]
+
+set size to (100) %
+
+
+endscreen
+=========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- wilhelm.mp3
+
+Scripts
+-------
+
+when @ clicked
+hide
+go to x: (0) y: (0)
+
+when I receive [cowboywin v]
+winFunction [cowboy]
+
+when I receive [alienwin v]
+winFunction [alien]
+
+define winFunction (whoWin)
+show
+stop all sounds
+broadcast [stopall v]
+play sound [wilhelm.mp3 v]
+if <(whoWin) = [alien]> then
+    say [Alien win!] for (2) secs
+end
+if <(whoWin) = [cowboy]> then
+    say [Cowboy win!] for (2) secs
+end
+stop [all v]
+
+
+startscreenp2
+=============
+
+Variables
+---------
+
+- bitstring = 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+Lists
+-----
+
+- history
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [startscreen v]
+show
+forever
+    turn @ (10) degrees
+end
+
+when I receive [Changebackdrop v]
+hide
+stop [other scripts in sprite v]
+
+when @ clicked
+go to x: (-197) y: (-106)
+hide
+
+
+startscreenp1
+=============
+
+Variables
+---------
+
+- bitstring = 00101
+
+Lists
+-----
+
+- history
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [startscreen v]
+show
+forever
+    turn @ (10) degrees
+end
+
+when I receive [Changebackdrop v]
+hide
+stop [other scripts in sprite v]
+
+when @ clicked
+go to x: (201) y: (-106)
+hide
+
+when I receive [Changebackdrop v]
+forever
+    if <touching color [-16777216 v] ?> then
+        wait (1) secs
+        if <touching color [-16777216 v] ?> then
+            wait (1) secs
+        end
+        if <touching color [-16777216 v] ?> then
+            wait (1) secs
+        end
+        if <touching color [-16777216 v] ?> then
+            go to x: (0) y: (0)
+        end
+    end
+end
+
+
+cross
+=====
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [Changebackdrop v]
+wait (1) secs
+if <(backdrop name) = [world's hardest]> then
+    show
+    forever
+        repeat (pick random (150) to (250))
+            turn @ (1) degrees
+        end
+        repeat (pick random (150) to (250))
+            turn @ (1) degrees
+        end
+    end
+end
+
+when @ clicked
+hide
+go to x: (0) y: (0)
+
+when I receive [stopall v]
+hide
+stop [other scripts in sprite v]
+
+
+P2
+==
+
+Variables
+---------
+
+- bitstring = 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+Lists
+-----
+
+- history
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when @ clicked
+forever
+    if <(bitstring2) = [00000]> then
+        NO OP
+    end
+end
+
+define NO OP
+
+when @ clicked
+forever
+    if <(letter (1) of (bitstring2)) = [1]> then
+        turn @ (5) degrees
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (3) of (bitstring2)) = [1]> then
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (4) of (bitstring2)) = [1]> then
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (2) of (bitstring2)) = [1]> then
+        turn @ (5) degrees
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (5) of (bitstring2)) = [1]> then
+        broadcast [shootp2 v] and wait
+    end
+end
+
+when @ clicked
+forever
+    set [directionp2 v] to (direction)
+end
+
+when I receive [Changebackdrop v]
+go to x: (198) y: (-144)
+point in direction (-90)
+set size to (100) %
+forever
+    set [bitstring2 v] to []
+    if <key [a v] pressed?> then
+        set [bitstring2 v] to (join (bitstring2) [1])
+    else
+        set [bitstring2 v] to (join (bitstring2) [0])
+    end
+    if <key [d v] pressed?> then
+        set [bitstring2 v] to (join (bitstring2) [1])
+    else
+        set [bitstring2 v] to (join (bitstring2) [0])
+    end
+    if <key [w v] pressed?> then
+        set [bitstring2 v] to (join (bitstring2) [1])
+    else
+        set [bitstring2 v] to (join (bitstring2) [0])
+    end
+    if <key [s v] pressed?> then
+        set [bitstring2 v] to (join (bitstring2) [1])
+    else
+        set [bitstring2 v] to (join (bitstring2) [0])
+    end
+    if <key [space v] pressed?> then
+        set [bitstring2 v] to (join (bitstring2) [1])
+    else
+        set [bitstring2 v] to (join (bitstring2) [0])
+    end
+    wait (0.05) secs
+end
+
+when @ clicked
+hide
+
+when I receive [Changebackdrop v]
+show
+
+when I receive [Changebackdrop v]
+forever
+    unstuck
+end
+
+when I receive [Changebackdrop v]
+wait (1) secs
+if <(backdrop name) = [world's hardest]> then
+    forever
+        if <touching [cross v] ?> then
+            go to x: (198) y: (-144)
+            point in direction (-90)
+        end
+    end
+end
+
+when I receive [stopall v]
+hide
+stop [other scripts in sprite v]
+
+when @ clicked
+set [bitstring2 v] to []
+
+define unstuck
+if <touching color [-16777216 v] ?> then
+    wait (1) secs
+    if <touching color [-16777216 v] ?> then
+        wait (1) secs
+    end
+    if <touching color [-16777216 v] ?> then
+        wait (1) secs
+    end
+    if <touching color [-16777216 v] ?> then
+        go to x: (0) y: (0)
+    end
+end
+
+
+P1
+==
+
+Variables
+---------
+
+- bitstring = 10100
+
+Lists
+-----
+
+- history
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when @ clicked
+forever
+    set [directionp1 v] to (direction)
+end
+
+when @ clicked
+forever
+    if <(bitstring) = [00000]> then
+        NO OP
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (1) of (bitstring)) = [1]> then
+        turn @ (15) degrees
+    end
+end
+
+when @ clicked
+hide
+
+when @ clicked
+forever
+    if <(letter (5) of (bitstring)) = [1]> then
+        broadcast [shootp1 v] and wait
+    end
+end
+
+when I receive [Changebackdrop v]
+go to x: (-187) y: (139)
+point in direction (90)
+set size to (100) %
+forever
+    set [bitstring v] to []
+    if <key [left arrow v] pressed?> then
+        set [bitstring v] to (join (bitstring) [1])
+    else
+        set [bitstring v] to (join (bitstring) [0])
+    end
+    if <key [right arrow v] pressed?> then
+        set [bitstring v] to (join (bitstring) [1])
+    else
+        set [bitstring v] to (join (bitstring) [0])
+    end
+    if <key [up arrow v] pressed?> then
+        set [bitstring v] to (join (bitstring) [1])
+    else
+        set [bitstring v] to (join (bitstring) [0])
+    end
+    if <key [down arrow v] pressed?> then
+        set [bitstring v] to (join (bitstring) [1])
+    else
+        set [bitstring v] to (join (bitstring) [0])
+    end
+    if <key [p v] pressed?> then
+        set [bitstring v] to (join (bitstring) [1])
+    else
+        set [bitstring v] to (join (bitstring) [0])
+    end
+    wait (0.05) secs
+end
+
+when @ clicked
+forever
+    if <(letter (3) of (bitstring)) = [1]> then
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (1) steps
+        end
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (4) of (bitstring)) = [1]> then
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+        if <touching color [-16777216 v] ?> then
+        
+        else
+            move (-1) steps
+        end
+    end
+end
+
+when @ clicked
+forever
+    if <(letter (2) of (bitstring)) = [1]> then
+        turn @ (15) degrees
+    end
+end
+
+when I receive [Changebackdrop v]
+show
+
+when I receive [stopall v]
+hide
+stop [other scripts in sprite v]
+
+when I receive [Changebackdrop v]
+wait (1) secs
+if <(backdrop name) = [world's hardest]> then
+    forever
+        if <touching [cross v] ?> then
+            go to x: (-187) y: (139)
+            point in direction (90)
+        end
+    end
+end
+
+when @ clicked
+set [bitstring v] to []
+
+define NO OP
+
+when I receive [Changebackdrop v]
+forever
+    unstuck
+end
+
+define unstuck
+if <touching color [-16777216 v] ?> then
+    wait (1) secs
+    if <touching color [-16777216 v] ?> then
+        wait (1) secs
+    end
+    if <touching color [-16777216 v] ?> then
+        wait (1) secs
+    end
+    if <touching color [-16777216 v] ?> then
+        go to x: (0) y: (0)
+    end
+end
+
+
+startscreen
+===========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when I receive [Changebackdrop v]
+show variable [scorep2 v]
+show variable [score p1 v]
+
+when I receive [stopall v]
+stop [other scripts in sprite v]
+
+when I receive [startscreen v]
+show
+forever
+    go to x: (0) y: (-20)
+end
+
+when @ clicked
+hide
+
+when I receive [Changebackdrop v]
+hide
+
+
+intro
+=====
+
+Costumes
+--------
+
+- IMG_2
+- EntangledLabsIntro
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when @ clicked
+point in direction (90)
+show
+switch costume to [EntangledLabsIntro v]
+go to x: (-303) y: (-19)
+glide (2) secs to x: (0) y: (0)
+repeat (24)
+    turn @ (15) degrees
+    change [color v] effect by (25)
+end
+wait (1) secs
+say [In collaboration with...] for (2) secs
+hide
+switch costume to [IMG_2 v]
+show
+go to x: (-303) y: (-19)
+glide (2) secs to x: (0) y: (0)
+repeat (18)
+    turn @ (180) degrees
+    change [color v] effect by (25)
+end
+wait (2.5) secs
+hide
+broadcast [startscreen v]
+stop [other scripts in sprite v]
+
+when @ clicked
+forever
+    if <key [space v] pressed?> then
+        hide
+        broadcast [startscreen v]
+        stop [other scripts in sprite v]
+        stop [this script v]
+    end
+end
+
+
+startbutton
+===========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when this sprite clicked
+broadcast [Changebackdrop v]
+hide
+
+when I receive [startscreen v]
+show
+
+when I receive [stopall v]
+stop [other scripts in sprite v]
+
+when @ clicked
+hide
+forever
+    go to x: (-23) y: (15)
+    go to front
+end
+
+
+nextbutton
+==========
+
+Costumes
+--------
+
+- costume1
+
+Sounds
+------
+
+- pop
+
+Scripts
+-------
+
+when this sprite clicked
+broadcast [nextbackground v]
+
+when I receive [startscreen v]
+show
+
+when I receive [stopall v]
+stop [other scripts in sprite v]
+
+when @ clicked
+hide
+forever
+    go to x: (5) y: (-73)
+    go to front
+end
+
+when I receive [Changebackdrop v]
+hide
